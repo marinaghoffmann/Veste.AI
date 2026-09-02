@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa de Histórias do Usuário - Guarda-roupa Digital</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --persona: #fff4cc;
+      --objective: #dbeafe;
+      --activity: #ede9fe;
+      --mvp: #dcfce7;
+      --r2: #ffedd5;
+      --backlog: #f3f4f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      padding: 40px 24px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    header p {
+      margin: 0 auto;
+      max-width: 900px;
+      color: var(--muted);
+    }
+
+    main {
+      width: min(1500px, 96%);
+      margin: 0 auto 48px;
+    }
+
+    .persona {
+      background: var(--persona);
+      border: 1px solid #f5d76e;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .persona-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 64px;
+      border: 2px solid #efd26b;
+      margin: auto;
+    }
+
+    .persona h2 {
+      margin: 0 0 10px;
+      font-size: 1.6rem;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 10px 24px;
+      color: #4b5563;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .legend span {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .story-map {
+      overflow-x: auto;
+      padding-bottom: 16px;
+    }
+
+    .map-grid {
+      min-width: 1400px;
+      display: grid;
+      grid-template-columns: 220px repeat(6, minmax(180px, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .cell {
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .label {
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #111827;
+      color: #fff;
+    }
+
+    .objective {
+      background: var(--objective);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .activity {
+      background: var(--activity);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .release-title {
+      font-weight: 800;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .mvp { background: var(--mvp); }
+    .r2 { background: var(--r2); }
+    .backlog { background: var(--backlog); }
+
+    .story {
+      min-height: 150px;
+    }
+
+    .story h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .story p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: #4b5563;
+    }
+
+    .story small {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .section-note {
+      margin-top: 24px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .section-note h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0 20px 30px;
+    }
+
+    @media (max-width: 800px) {
+      .persona {
+        grid-template-columns: 1fr;
+      }
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .story-map { overflow: visible; }
+      .map-grid { min-width: 0; }
+      .cell { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mapa de Histórias do Usuário</h1>
+    <p>
+      Guarda-roupa Digital — organização das jornadas, atividades e histórias
+      priorizadas em MVP, Release 2 e Backlog.
+    </p>
+  </header>
+
+  <main>
+    <section class="persona">
+      <div class="persona-avatar">👩🏻‍💻</div>
+      <div>
+        <h2>Persona: Marina</h2>
+        <div class="persona-grid">
+          <div><strong>Perfil:</strong> estudante / jovem profissional</div>
+          <div><strong>Objetivo:</strong> escolher roupas com mais praticidade</div>
+          <div><strong>Necessidade:</strong> organizar peças e combinações</div>
+          <div><strong>Dor:</strong> dificuldade para lembrar e combinar o que já possui</div>
+          <div><strong>Comportamento:</strong> usa o celular para planejar a rotina</div>
+          <div><strong>Valor esperado:</strong> sugestões personalizadas e visão organizada do guarda-roupa</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="legend">
+      <span style="background: var(--objective)">Objetivo / Backbone</span>
+      <span style="background: var(--activity)">Atividade</span>
+      <span style="background: var(--mvp)">Release 1 — MVP</span>
+      <span style="background: var(--r2)">Release 2 — Importante</span>
+      <span style="background: var(--backlog)">Backlog — Desejável</span>
+    </div>
+
+    <section class="story-map">
+      <div class="map-grid">
+        <div class="cell label">Nível</div>
+        <div class="cell objective">Cadastro & Perfil</div>
+        <div class="cell objective">Cadastrar Peças</div>
+        <div class="cell objective">Organizar Guarda-roupa</div>
+        <div class="cell objective">Montar Looks</div>
+        <div class="cell objective">IA & Sugestões</div>
+        <div class="cell objective">Planejar & Compartilhar</div>
+
+        <div class="cell label">Atividade principal</div>
+        <div class="cell activity">Acessar e personalizar a conta</div>
+        <div class="cell activity">Adicionar e manter peças</div>
+        <div class="cell activity">Encontrar e agrupar roupas</div>
+        <div class="cell activity">Criar e reutilizar combinações</div>
+        <div class="cell activity">Receber recomendações inteligentes</div>
+        <div class="cell activity">Planejar e compartilhar looks</div>
+
+        <div class="cell release-title mvp">Release 1 — Essencial (MVP)</div>
+
+        <div class="cell story mvp">
+          <h3>Criar conta e login</h3>
+          <p>Como usuária, quero criar uma conta e fazer login para acessar meu guarda-roupa digital com segurança.</p>
+          <small>Prioridade: Essencial</small>
+        </div>
+
+        <div class="cell story mvp">
+          <h3>Cadastrar peça manualmente</h3>
+          <p>Como usuária, quero cadastrar uma peça com foto, categoria e cor para adicioná-la ao meu guarda-roupa.</p>
+          <small>Prioridade: Essencial</small>
+        </div>
+
+        <div class="cell story mvp">
+          <h3>Buscar e filtrar peças</h3>
+          <p>Como usuária, quero filtrar minhas peças por categoria, cor ou estação para encontrar roupas com facilidade.</p>
+          <small>Prioridade: Essencial</small>
+        </div>
+
+        <div class="cell story mvp">
+          <h3>Montar look manualmente</h3>
+          <p>Como usuária, quero combinar peças manualmente para visualizar e salvar possíveis looks.</p>
+          <small>Prioridade: Essencial</small>
+        </div>
+
+        <div class="cell story mvp">
+          <h3>Receber sugestão de look</h3>
+          <p>Como usuária, quero receber sugestões com base nas peças cadastradas para decidir o que vestir com mais rapidez.</p>
+          <small>Prioridade: Essencial</small>
+        </div>
+
+        <div class="cell story mvp">
+          <h3>Agendar look para um dia</h3>
+          <p>Como usuária, quero agendar um look para uma data específica para planejar antecipadamente o que vou vestir.</p>
+          <small>Prioridade: Essencial</small>
+        </div>
+
+        <div class="cell release-title r2">Release 2 — Importante</div>
+
+        <div class="cell story r2">
+          <h3>Editar perfil</h3>
+          <p>Como usuária, quero editar meus dados pessoais para manter meu perfil atualizado.</p>
+          <small>Prioridade: Importante</small>
+        </div>
+
+        <div class="cell story r2">
+          <h3>Editar ou excluir peça</h3>
+          <p>Como usuária, quero alterar ou remover peças cadastradas para manter meu guarda-roupa coerente com o que possuo.</p>
+          <small>Prioridade: Importante</small>
+        </div>
+
+        <div class="cell story r2">
+          <h3>Criar coleções</h3>
+          <p>Como usuária, quero criar coleções como trabalho, verão ou festa para organizar minhas peças por contexto.</p>
+          <small>Prioridade: Importante</small>
+        </div>
+
+        <div class="cell story r2">
+          <h3>Salvar look como favorito</h3>
+          <p>Como usuária, quero favoritar looks para encontrá-los novamente sem precisar remontar as combinações.</p>
+          <small>Prioridade: Importante</small>
+        </div>
+
+        <div class="cell story r2">
+          <h3>Sugestão por ocasião</h3>
+          <p>Como usuária, quero receber sugestões de look para uma ocasião específica, como trabalho, festa ou situação casual.</p>
+          <small>Prioridade: Importante</small>
+        </div>
+
+        <div class="cell story r2">
+          <h3>Compartilhar look</h3>
+          <p>Como usuária, quero compartilhar um look por link ou imagem para mostrá-lo a outras pessoas.</p>
+          <small>Prioridade: Importante</small>
+        </div>
+
+        <div class="cell release-title backlog">Backlog — Desejável</div>
+
+        <div class="cell story backlog">
+          <h3>Definir preferências de estilo</h3>
+          <p>Como usuária, quero informar estilos, cores e tamanhos preferidos para receber sugestões mais adequadas ao meu gosto.</p>
+          <small>Prioridade: Desejável</small>
+        </div>
+
+        <div class="cell story backlog">
+          <h3>Reconhecimento automático por IA</h3>
+          <p>Como usuária, quero que a IA reconheça automaticamente categoria e cor da peça para tornar o cadastro mais rápido.</p>
+          <small>Prioridade: Desejável</small>
+        </div>
+
+        <div class="cell story backlog">
+          <h3>Marcar peça como indisponível</h3>
+          <p>Como usuária, quero marcar uma peça como indisponível quando ela estiver na lavanderia ou temporariamente sem uso.</p>
+          <small>Prioridade: Desejável</small>
+        </div>
+
+        <div class="cell story backlog">
+          <h3>Ver histórico de looks usados</h3>
+          <p>Como usuária, quero consultar os looks que já usei para evitar repetições ou reutilizar combinações anteriores.</p>
+          <small>Prioridade: Desejável</small>
+        </div>
+
+        <div class="cell story backlog">
+          <h3>Sugestão de substituição de peça</h3>
+          <p>Como usuária, quero receber uma alternativa semelhante quando uma peça do look estiver indisponível.</p>
+          <small>Prioridade: Desejável</small>
+        </div>
+
+        <div class="cell story backlog">
+          <h3>Dashboard de peças mais/menos usadas</h3>
+          <p>Como usuária, quero visualizar quais peças uso mais e menos para compreender melhor meus hábitos e aproveitar meu guarda-roupa.</p>
+          <small>Prioridade: Desejável</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-note">
+      <h2>Leitura do mapa</h2>
+      <p>
+        O fluxo começa pela criação da conta, passa pelo cadastro e organização das peças,
+        permite montar e receber sugestões de looks e termina nas atividades de planejamento
+        e compartilhamento. A primeira faixa representa o MVP, a segunda adiciona funcionalidades
+        importantes e a terceira reúne melhorias desejáveis para evolução do produto.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Guarda-roupa Digital · User Story Map
+  </footer>
+</body>
+</html>
