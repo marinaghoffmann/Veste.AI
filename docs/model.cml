@@ -1,0 +1,98 @@
+ContextMap GuardaRoupaDigitalMap {
+  type = SYSTEM_LANDSCAPE
+  state = TO_BE
+
+  contains GuardaRoupaContext
+  contains SugestaoIAContext
+  contains AgendamentoContext
+
+  GuardaRoupaContext [Upstream, OpenHostService] <- [Downstream, Client-Supplier] SugestaoIAContext
+  GuardaRoupaContext [Upstream, OpenHostService] <- [Downstream, Client-Supplier] AgendamentoContext
+}
+
+BoundedContext GuardaRoupaContext {
+  type = FEATURE
+  domainVisionStatement = "Gerencia o perfil, o cadastro de peças, coleções e montagem manual de looks."
+  
+  Aggregate GestaoPecas {
+    Entity Peca {
+      aggregateRoot
+      long id
+      String nome
+      String fotoUrl
+      String categoria
+      String cor
+      String estacao
+      boolean disponivel
+    }
+
+    Entity Colecao {
+      long id
+      String nome
+      String descricao
+    }
+  }
+
+  Aggregate GestaoLooks {
+    Entity Look {
+      aggregateRoot
+      long id
+      String nome
+      boolean favorito
+    }
+  }
+
+  Aggregate AutenticacaoPerfil {
+    Entity Usuario {
+      aggregateRoot
+      long id
+      String nome
+      String email
+      String senhaHash
+    }
+  }
+}
+
+BoundedContext SugestaoIAContext {
+  type = FEATURE
+  domainVisionStatement = "Gera recomendações automáticas de looks com base nas peças cadastradas e na ocasião."
+
+  Aggregate RecomendacaoLook {
+    Entity SugestaoLook {
+      aggregateRoot
+      long id
+      String ocasiao
+      String justificativaIA
+    }
+  }
+}
+
+BoundedContext AgendamentoContext {
+  type = FEATURE
+  domainVisionStatement = "Planejamento e agendamento de looks para o calendário do usuário."
+
+  Aggregate AgendaLook {
+    Entity Agendamento {
+      aggregateRoot
+      long id
+      Date data
+    }
+  }
+}
+
+Domain GuardaRoupaDigitalDomain {
+  Subdomain CoreGuardaRoupa {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Gestão de peças, criação de looks e recomendações de vestuário."
+  }
+
+  Subdomain SuporteAgendamento {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Organização do uso de looks por datas."
+  }
+
+  Subdomain GenericoAutenticacao {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Cadastro, autenticação e controle de acesso de usuários."
+  }
+}

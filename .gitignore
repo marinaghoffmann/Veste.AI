@@ -1,0 +1,73 @@
+# ==========================================
+# Java / Spring Boot / Maven (Backend)
+# ==========================================
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/**/target/
+*.class
+*.jar
+*.war
+*.ear
+*.rar
+
+# Logs e arquivos de execução
+*.log
+backend/logs/
+
+# Banco de dados local / arquivos temporários de storage
+*.db
+*.sqlite
+
+# ==========================================
+# Node / Angular / React (Frontend)
+# ==========================================
+frontend/node_modules/
+frontend/dist/
+frontend/tmp/
+frontend/.angular/
+frontend/out-tsc/
+.npm/
+
+# ==========================================
+# IDEs e Editores
+# ==========================================
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.metadata/
+.classpath
+.project
+.settings/
+bin/
+
+# ==========================================
+# Sistema Operacional (macOS / Windows / Linux)
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==========================================
+# Variaveis de Ambiente e Segredos
+# ==========================================
+.env
+.env.local
+*.pem
+*.key
