@@ -24,4 +24,5 @@ public class PecaEntity {
     private String estacao;
     private String fotoUrl;
     private boolean disponivel = true;
+    private Long donoId;
 }

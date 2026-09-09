@@ -1,7 +1,5 @@
 import { createContext, useMemo, useState, type ReactNode } from "react";
-
-const CHAVE_TOKEN = "vesteai.token";
-const CHAVE_EMAIL = "vesteai.usuarioEmail";
+import { CHAVE_EMAIL, CHAVE_TOKEN } from "../../lib/authStorage";
 
 export interface AuthContextValue {
   token: string | null;

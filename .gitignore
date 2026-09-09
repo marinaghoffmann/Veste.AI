@@ -17,6 +17,7 @@ backend/logs/
 # Banco de dados local / arquivos temporários de storage
 *.db
 *.sqlite
+backend/uploads/
 
 # ==========================================
 # Node / Angular / React (Frontend)

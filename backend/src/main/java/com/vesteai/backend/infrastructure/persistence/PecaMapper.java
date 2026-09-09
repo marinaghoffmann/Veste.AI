@@ -21,6 +21,7 @@ public class PecaMapper {
         if (!entity.isDisponivel()) {
             peca.marcarIndisponivel();
         }
+        peca.definirDono(entity.getDonoId());
         return peca;
     }
 
@@ -33,6 +34,7 @@ public class PecaMapper {
         entity.setEstacao(peca.getEstacao().name());
         entity.setFotoUrl(peca.getFotoUrl());
         entity.setDisponivel(peca.isDisponivel());
+        entity.setDonoId(peca.getDonoId());
         return entity;
     }
 }

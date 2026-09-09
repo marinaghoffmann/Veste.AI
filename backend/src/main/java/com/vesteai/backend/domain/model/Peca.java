@@ -13,6 +13,7 @@ public class Peca {
     private Estacao estacao;
     private String fotoUrl;
     private boolean disponivel;
+    private Long donoId;
 
     public Peca(Long id, String nome, Categoria categoria, Cor cor, Estacao estacao, String fotoUrl) {
         if (nome == null || nome.isBlank()) {
@@ -36,6 +37,10 @@ public class Peca {
 
     public void marcarDisponivel() {
         this.disponivel = true;
+    }
+
+    public void definirDono(Long donoId) {
+        this.donoId = donoId;
     }
 
     public Long getId() {
@@ -64,5 +69,9 @@ public class Peca {
 
     public boolean isDisponivel() {
         return disponivel;
+    }
+
+    public Long getDonoId() {
+        return donoId;
     }
 }

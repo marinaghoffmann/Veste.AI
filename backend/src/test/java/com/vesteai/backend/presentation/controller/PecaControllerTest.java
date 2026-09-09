@@ -28,10 +28,12 @@ class PecaControllerTest {
 
     @Test
     void filtraPecasCadastradasPorCategoria() throws Exception {
-        pecaRepository.salvar(new Peca(null, "Camisa social", Categoria.PARTE_DE_CIMA, new Cor("branco"), Estacao.TODAS, null));
-        pecaRepository.salvar(new Peca(null, "Calça jeans", Categoria.PARTE_DE_BAIXO, new Cor("azul"), Estacao.TODAS, null));
+        pecaRepository.salvar(
+                new Peca(null, "Camisa social", Categoria.PARTE_DE_CIMA, new Cor("bege-teste-filtro"), Estacao.TODAS, null));
+        pecaRepository.salvar(
+                new Peca(null, "Calça jeans", Categoria.PARTE_DE_BAIXO, new Cor("azul-teste-filtro"), Estacao.TODAS, null));
 
-        mockMvc.perform(get("/api/pecas").param("categoria", "PARTE_DE_CIMA"))
+        mockMvc.perform(get("/api/pecas").param("categoria", "PARTE_DE_CIMA").param("cor", "bege-teste-filtro"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].nome").value("Camisa social"));

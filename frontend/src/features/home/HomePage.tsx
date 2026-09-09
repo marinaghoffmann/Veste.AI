@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { useAuth } from "../auth/useAuth";
 
@@ -12,7 +13,10 @@ export function HomePage() {
       <p>
         Logado como <strong>{usuarioEmail}</strong>
       </p>
-      <div style={{ maxWidth: "200px" }}>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <Link to="/pecas/nova">Cadastrar peça</Link>
+      </div>
+      <div style={{ maxWidth: "200px", marginTop: "16px" }}>
         <Button variante="secundaria" onClick={sair}>
           Sair
         </Button>

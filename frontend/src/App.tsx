@@ -5,6 +5,7 @@ import { LoginPage } from "./features/auth/LoginPage";
 import { RegisterPage } from "./features/auth/RegisterPage";
 import { RequireAuth } from "./features/auth/RequireAuth";
 import { HomePage } from "./features/home/HomePage";
+import { CadastrarPecaPage } from "./features/pecas/CadastrarPecaPage";
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
               element={
                 <RequireAuth>
                   <HomePage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/pecas/nova"
+              element={
+                <RequireAuth>
+                  <CadastrarPecaPage />
                 </RequireAuth>
               }
             />

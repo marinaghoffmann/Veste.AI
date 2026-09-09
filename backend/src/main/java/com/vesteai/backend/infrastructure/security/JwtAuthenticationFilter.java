@@ -37,7 +37,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = cabecalho.substring(PREFIXO_BEARER.length());
             try {
                 Claims claims = jwtTokenService.validarEExtrairClaims(token);
-                var autenticacao = new UsernamePasswordAuthenticationToken(claims.getSubject(), null, List.of());
+                var usuarioAutenticado = new UsuarioAutenticado(claims.get("usuarioId", Long.class), claims.getSubject());
+                var autenticacao = new UsernamePasswordAuthenticationToken(usuarioAutenticado, null, List.of());
                 SecurityContextHolder.getContext().setAuthentication(autenticacao);
             } catch (JwtException | IllegalArgumentException e) {
                 SecurityContextHolder.clearContext();
