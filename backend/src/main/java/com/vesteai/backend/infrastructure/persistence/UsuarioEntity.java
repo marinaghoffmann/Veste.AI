@@ -1,5 +1,6 @@
 package com.vesteai.backend.infrastructure.persistence;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,19 +10,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "pecas")
+@Table(name = "usuarios")
 @Getter
 @Setter
-public class PecaEntity {
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
-    private String categoria;
-    private String cor;
-    private String estacao;
-    private String fotoUrl;
-    private boolean disponivel = true;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    private String senhaHash;
 }

@@ -8,20 +8,18 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "pecas")
+@Table(name = "agendamentos")
 @Getter
 @Setter
-public class PecaEntity {
+public class AgendamentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private String categoria;
-    private String cor;
-    private String estacao;
-    private String fotoUrl;
-    private boolean disponivel = true;
+    private Long lookId;
+    private LocalDate data;
 }
