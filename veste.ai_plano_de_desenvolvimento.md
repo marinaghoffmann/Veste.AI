@@ -80,39 +80,39 @@
 
 **1 Cadastro & perfil --- Criar conta e login** *· Integrante 03*
 
-> ☐ Modelar tabela de usuários (nome, e-mail, senha com hash)
+> [x] Modelar tabela de usuários (nome, e-mail, senha com hash)
 >
-> ☐ Endpoint de cadastro (POST /auth/register)
+> [x] Endpoint de cadastro (POST /auth/register)
 >
-> ☐ Endpoint de login com token (POST /auth/login)
+> [x] Endpoint de login com token (POST /auth/login)
 >
-> ☐ Tela de cadastro com validação de e-mail/senha
+> [x] Tela de cadastro com validação de e-mail/senha
 >
-> ☐ Tela de login
+> [x] Tela de login
 >
-> ☐ Testes automatizados do fluxo de autenticação
+> [x] Testes automatizados do fluxo de autenticação
 >
-> ☐ Escrever cenário BDD (Gherkin) da história
+> [x] Escrever cenário BDD (Gherkin) da história
 >
-> ☐ Automatizar o cenário com Cucumber
+> [x] Automatizar o cenário com Cucumber
 
 **2 Cadastrar peças --- Cadastro manual (foto, categoria, cor)** *· Integrante 03*
 
-> ☐ Modelar tabela de peças (dono, foto, categoria, cor, estação)
+> [x] Modelar tabela de peças (dono, foto, categoria, cor, estação)
 >
-> ☐ Endpoint de upload de foto
+> [x] Endpoint de upload de foto
 >
-> ☐ Endpoint POST /pecas
+> [x] Endpoint POST /pecas
 >
-> ☐ Formulário de cadastro (upload, categoria, seletor de cor)
+> [x] Formulário de cadastro (upload, categoria, seletor de cor)
 >
-> ☐ Validações de campos obrigatórios
+> [x] Validações de campos obrigatórios
 >
-> ☐ Testes de integração do fluxo de cadastro
+> [x] Testes de integração do fluxo de cadastro
 >
-> ☐ Escrever cenário BDD (Gherkin) da história
+> [x] Escrever cenário BDD (Gherkin) da história
 >
-> ☐ Automatizar o cenário com Cucumber
+> [x] Automatizar o cenário com Cucumber
 
 **3 Organizar guarda-roupa --- Buscar/filtrar peças** *· Integrante 05*
 
