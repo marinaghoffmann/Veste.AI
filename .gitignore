@@ -17,6 +17,7 @@ backend/logs/
 # Banco de dados local / arquivos temporários de storage
 *.db
 *.sqlite
+backend/uploads/
 
 # ==========================================
 # Node / Angular / React (Frontend)
@@ -31,6 +32,9 @@ frontend/out-tsc/
 # ==========================================
 # IDEs e Editores
 # ==========================================
+# Ferramentas de IA / CLI
+.claude/
+
 # VS Code
 .vscode/*
 !.vscode/settings.json

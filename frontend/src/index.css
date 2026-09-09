@@ -1,0 +1,15 @@
+@import "./styles/tokens.css";
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-primary);
+  background: var(--color-bg);
+}
+
+h1,
+h2 {
+  font-family: var(--font-family-display);
+  font-weight: 700;
+}
