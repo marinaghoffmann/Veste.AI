@@ -16,6 +16,9 @@ export function HomePage() {
       <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
         <Link to="/pecas/nova">Cadastrar peça</Link>
       </div>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <Link to="/pecas/nova/ia">Cadastrar peça</Link>
+      </div>
       <div style={{ maxWidth: "200px", marginTop: "16px" }}>
         <Button variante="secundaria" onClick={sair}>
           Sair
